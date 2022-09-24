@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace DemoEducativeWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // The following line enables Application Insights telemetry collection.
+            services.AddApplicationInsightsTelemetry();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,7 @@ namespace DemoEducativeWebApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
 
             app.UseRouting();
 
